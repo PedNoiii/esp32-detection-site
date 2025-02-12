@@ -38,7 +38,7 @@
             background-color: #4CAF50; /* Green */
         }
         .undetected {
-            background-color: #FF5722; /* Orange */
+            background-color: #c72e00; /* Orange */
         }
     </style>
 </head>
@@ -62,13 +62,3 @@
                 statusText.classList.add('undetected');
             }
         }
-
-        // Example: Automatically switch status every 5 seconds (for demo purposes)
-        setInterval(() => {
-            const currentStatus = document.getElementById('status-text').textContent;
-            const newStatus = currentStatus === 'Product Detected' ? 'Product Undetected!' : 'Product Detected';
-            updateStatus(newStatus);
-        }, 5000);
-    </script>
-</body>
-</html>
