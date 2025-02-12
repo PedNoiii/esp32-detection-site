@@ -3,56 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESP32 Color Detection</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <title>Product Detection</title>
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8;
-            margin: 0;
-            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            margin: 0;
         }
         .container {
-            background-color: #ffffff;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
-            border-radius: 12px;
             text-align: center;
-            width: 90%;
-            max-width: 500px;
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
         }
         h1 {
-            font-size: 1.75rem;
-            color: #333333;
+            font-size: 2rem;
             margin-bottom: 1rem;
         }
-        ul {
-            list-style-type: none;
-            padding: 0;
+        .status {
+            font-size: 1.5rem;
+            padding: 1rem;
+            border-radius: 10px;
+            color: #fff;
         }
-        li {
-            font-size: 1rem;
-            color: #555555;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #e0e0e0;
+        .detected {
+            background-color: #4CAF50; /* Green */
         }
-        li:last-child {
-            border-bottom: none;
+        .undetected {
+            background-color: #FF5722; /* Orange */
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Detected Colors</h1>
-        <ul>
-            {% for color in detections %}
-                <li>{{ color }}</li>
-            {% endfor %}
-        </ul>
+        <h1>Product Detection Status</h1>
+        <div id="status-text" class="status undetected">Product Undetected!</div>
     </div>
+
+    <script>
+        // Simulate real-time data updates (replace this with live server data in a real-world setup)
+        function updateStatus(status) {
+            const statusText = document.getElementById('status-text');
+            statusText.textContent = status;
+
+            if (status === 'Product Detected') {
+                statusText.classList.remove('undetected');
+                statusText.classList.add('detected');
+            } else {
+                statusText.classList.remove('detected');
+                statusText.classList.add('undetected');
+            }
+        }
+
+        // Example: Automatically switch status every 5 seconds (for demo purposes)
+        setInterval(() => {
+            const currentStatus = document.getElementById('status-text').textContent;
+            const newStatus = currentStatus === 'Product Detected' ? 'Product Undetected!' : 'Product Detected';
+            updateStatus(newStatus);
+        }, 5000);
+    </script>
 </body>
 </html>
