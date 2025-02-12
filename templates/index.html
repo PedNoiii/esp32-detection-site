@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ESP32 Detection</title>
+</head>
+<body>
+    <h1>Detected Colors</h1>
+    <ul>
+        {% for color in detections %}
+            <li>{{ color }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
